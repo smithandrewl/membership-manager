@@ -11,5 +11,29 @@ public class BaseDAO {
 
     public BaseDAO() throws SQLException {
         // create the database if it does not exist
+        createDatabaseTables();
+    }
+
+    private void createDatabaseTables() {
+        createClubTable();
+        createMemberTable();
+        createClassTable();
+        createClassMemberTable();
+    }
+
+    private void createClubTable() {
+
+    }
+
+    private void createMemberTable() {
+
+    }
+
+    private void createClassTable() {
+
+    }
+
+    private void createClassMemberTable() {
+
     }
 }
