@@ -1,9 +1,7 @@
 package bike.rusty.membershipmanager.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.File;
+import java.sql.*;
 
 /**
  * Provides basic database functionality for all Table specific DAO classes.
@@ -11,7 +9,7 @@ import java.sql.Statement;
 public class BaseDAO {
     public static final String CONNECTION_STRING ="jdbc:sqlite:members.db";
 
-    Connection connection = DriverManager.getConnection(CONNECTION_STRING);
+    Connection connection = null;
     public static final String CLUB_SQL = String.join(
         "\n",
         "CREATE TABLE club(",
@@ -57,10 +55,33 @@ public class BaseDAO {
     );
     
     public BaseDAO() throws SQLException {
+        System.out.println("Inside BaseDAO");
+
+        System.out.println("Checking to see if the database exists on disk");
         // create the database if it does not exist
-        createDatabaseTables();
+        boolean shouldCreateDatabase = !doesDatabaseExist();
+
+        System.out.printf("Does members.db exist: %s\n", !shouldCreateDatabase);
+
+        if(shouldCreateDatabase) {
+            System.out.println("Creating members.db");
+        } else {
+            System.out.println("Opening members.db");
+        }
+        connection = DriverManager.getConnection(CONNECTION_STRING);
+
+        if(!doesDatabaseExist()) {
+            System.out.println("Creating database tables");
+            createDatabaseTables();
+        }
+
     }
 
+    private boolean doesDatabaseExist() {
+        File database = new File("members.db");
+
+        return database.exists();
+    }
 
     /**
      * Creates the database tables.

@@ -1,5 +1,9 @@
 package bike.rusty.membershipmanager;
 
+import bike.rusty.membershipmanager.db.BaseDAO;
+
+import java.sql.SQLException;
+
 /**
  * Hello world!
  *
@@ -8,6 +12,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+        try {
+            BaseDAO baseDAO = new BaseDAO();
+        } catch (SQLException e) {
+            System.err.printf("Error opening database:%s", e.getMessage());
+        }
     }
 }
