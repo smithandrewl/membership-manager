@@ -1,9 +1,12 @@
 package bike.rusty.membershipmanager;
 
 import bike.rusty.membershipmanager.db.dao.ClubDAO;
+import bike.rusty.membershipmanager.db.dao.MemberDAO;
 import bike.rusty.membershipmanager.model.Club;
+import bike.rusty.membershipmanager.model.Member;
 
 import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * Membership Manager Example
@@ -16,12 +19,28 @@ public class App
 
         try {
             ClubDAO clubDAO = new ClubDAO();
+            MemberDAO memberDAO = new MemberDAO();
+
 
             System.out.println("Getting club information");
             Club club = clubDAO.getClub();
+            memberDAO.addMember(
+                new Member(club.getClubId(), "Andrew", "Smith")
+            );
+
+            memberDAO.addMember(
+                new Member(club.getClubId(), "Matt", "Smith")
+            );
+
+            Vector<Member> members = memberDAO.getMembers();
 
             System.out.println(club);
+            System.out.println("Members:");
 
+            for(Member member : members) {
+                System.out.println(member);
+            }
+            System.out.println();
 
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());
