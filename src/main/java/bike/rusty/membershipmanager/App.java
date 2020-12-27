@@ -40,6 +40,21 @@ public class App
             for(Member member : members) {
                 System.out.println(member);
             }
+
+            System.out.println("Adding an s to each firstname");
+            for(Member member : members) {
+                Member updatedMember = new Member(
+                    member.getMemberId(), member.getClubId(), member.getFirstName() + "s", member.getLastName()
+                );
+
+                memberDAO.updateMember(updatedMember);
+            }
+            Vector<Member> updatedMembers = memberDAO.getMembers();
+
+            for(Member updatedMember : updatedMembers) {
+                System.out.println(updatedMember);
+            }
+
             System.out.println();
 
         } catch (SQLException e) {

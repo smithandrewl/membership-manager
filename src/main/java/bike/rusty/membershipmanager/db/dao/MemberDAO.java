@@ -11,6 +11,7 @@ public class MemberDAO extends BaseDAO {
     String GET_SQL = "SELECT * FROM member;";
     String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
     String ADD_SQL = "INSERT INTO member(clubId, firstName, lastName) VALUES(?, ?, ?)";
+    String UPDATE_SQL = "UPDATE member SET clubId = ?, firstName = ?, lastName = ? WHERE memberId = ?";
 
     public MemberDAO() throws SQLException { }
 
@@ -66,6 +67,19 @@ public class MemberDAO extends BaseDAO {
         statement.setString(3, member.getLastName());
 
         statement.execute();
+        statement.close();
         return statement.getGeneratedKeys().getInt(1);
+    }
+
+    public void updateMember(Member member) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(UPDATE_SQL);
+
+        statement.setInt(1, member.getClubId());
+        statement.setString(2, member.getFirstName());
+        statement.setString(3, member.getLastName());
+        statement.setInt(4, member.getMemberId());
+
+        statement.execute();
+        statement.close();
     }
 }
