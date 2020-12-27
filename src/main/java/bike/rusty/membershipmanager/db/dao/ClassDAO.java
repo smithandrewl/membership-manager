@@ -28,6 +28,16 @@ public class ClassDAO extends BaseDAO {
             "    classId = ?"
         );
 
+    String ADD_SQL =
+        String.join(
+            "\n",
+            "INSERT INTO CLASS(",
+            "    clubId,",
+            "    name,",
+            "    description",
+            ") VALUES (?, ?, ?);"
+        );
+
     public ClassDAO() throws SQLException {
     }
 
@@ -70,5 +80,21 @@ public class ClassDAO extends BaseDAO {
         statement.close();
 
         return clubClass;
+    }
+
+    public int addClass(Class clubClass) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(ADD_SQL);
+
+        statement.setInt(1, clubClass.getClubId());
+        statement.setString(2, clubClass.getName());
+        statement.setString(3, clubClass.getDescription());
+
+        statement.execute();
+
+        int key = statement.getGeneratedKeys().getInt(1);
+
+        statement.close();
+
+        return key;
     }
 }
