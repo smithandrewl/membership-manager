@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.Optional;
 import java.util.Vector;
 
+/**
+ * Provides an interface to the Class database table.
+ */
 public class ClassDAO extends BaseDAO {
     String GET_SQL =
         String.join(
@@ -42,6 +45,11 @@ public class ClassDAO extends BaseDAO {
     public ClassDAO() throws SQLException {
     }
 
+    /**
+     * Returns all of the classes.
+     * @return All of the classes.
+     * @throws SQLException Thrown in case of a database error.
+     */
     public Vector<Class> getClasses() throws SQLException {
         Vector<Class> classes = new Vector<>();
 
@@ -99,6 +107,13 @@ public class ClassDAO extends BaseDAO {
         return result;
     }
 
+    /**
+     * Adds a new class to the database.
+     *
+     * @param clubClass The Class object to save to the database.
+     * @return Returns the classId of the newly created Class record.
+     * @throws SQLException Thrown in case of a database error.
+     */
     public int addClass(Class clubClass) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(ADD_SQL);
 

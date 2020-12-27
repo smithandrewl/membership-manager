@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Provides an interface to the Club database table.
+ */
 public class ClubDAO extends BaseDAO{
 
     String GET_SQL = "SELECT * FROM club;";
@@ -13,6 +16,11 @@ public class ClubDAO extends BaseDAO{
     public ClubDAO() throws SQLException {
     }
 
+    /**
+     * Returns the one club record from the database.
+     * @return The club database record.
+     * @throws SQLException Thrown in case of a database error.
+     */
     public Club getClub() throws SQLException {
         Statement statement = connection.createStatement();
 

@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+/**
+ * Provides access to the Members database table.
+ */
 public class MemberDAO extends BaseDAO {
     String GET_SQL        = "SELECT * FROM member;";
     String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
@@ -27,6 +30,11 @@ public class MemberDAO extends BaseDAO {
 
     public MemberDAO() throws SQLException { }
 
+    /**
+     * Gets all members of the club.
+     * @return Returns all club members.
+     * @throws SQLException Thrown in case of an error
+     */
     public Vector<Member> getMembers() throws SQLException {
         Vector<Member> members = new Vector<Member>();
 
@@ -47,6 +55,13 @@ public class MemberDAO extends BaseDAO {
         return members;
     }
 
+    /**
+     * Obtains a Member given their memberId.
+     *
+     * @param memberId The clients member id
+     * @return The member with the matching member id.
+     * @throws SQLException Thrown in case of a database error
+     */
     public Member getById(int memberId) throws SQLException {
 
         PreparedStatement statement = connection.prepareStatement(
@@ -71,6 +86,13 @@ public class MemberDAO extends BaseDAO {
         return member;
     }
 
+    /**
+     * Adds a member to the database.
+     *
+     * @param member The member to add
+     * @return Returns the memberId of the newly created member.
+     * @throws SQLException Thrown in case of database error.
+     */
     public int addMember(Member member) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(ADD_SQL);
 
@@ -83,6 +105,11 @@ public class MemberDAO extends BaseDAO {
         return statement.getGeneratedKeys().getInt(1);
     }
 
+    /**
+     * Updates a member with new values.
+     * @param member The member with updated fields.
+     * @throws SQLException Thrown in case of a database error.
+     */
     public void updateMember(Member member) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(UPDATE_SQL);
 
