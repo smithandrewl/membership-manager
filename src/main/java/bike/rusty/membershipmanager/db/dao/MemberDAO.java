@@ -1,6 +1,7 @@
 package bike.rusty.membershipmanager.db.dao;
 import bike.rusty.membershipmanager.model.Member;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,6 +9,7 @@ import java.util.Vector;
 
 public class MemberDAO extends BaseDAO {
     String GET_SQL = "SELECT * FROM member;";
+    String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
 
     public MemberDAO() throws SQLException { }
 
@@ -29,5 +31,28 @@ public class MemberDAO extends BaseDAO {
         statement.close();
 
         return members;
+    }
+
+    public Member getById(int memberId) throws SQLException {
+
+        PreparedStatement statement = connection.prepareStatement(
+            FIND_BY_ID_SQL,
+            memberId
+        );
+
+        ResultSet rs =statement.executeQuery();
+
+        rs.next();
+
+        Member member = new Member(
+            rs.getInt("memberId"),
+            rs.getInt("clubId"),
+            rs.getString("firstName"),
+            rs.getString("lastName")
+        );
+
+        rs.close();
+
+        return member;
     }
 }
