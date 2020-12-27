@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Provides basic database functionality for all Table specific DAO classes.
+ */
 public class BaseDAO {
     public static final String CONNECTION_STRING ="jdbc:sqlite:members.db";
 
@@ -59,6 +62,11 @@ public class BaseDAO {
     }
 
 
+    /**
+     * Creates the database tables.
+     *
+     * @throws SQLException Thrown if there is an error
+     */
     private void createDatabaseTables() throws SQLException {
         createClubTable();
         createMemberTable();
@@ -66,24 +74,44 @@ public class BaseDAO {
         createClassMemberTable();
     }
 
+    /**
+     * Creates the Club table.
+     *
+     * @throws SQLException Thrown if there is an error
+     */
     private void createClubTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLUB_SQL);
         statement.close();
     }
 
+    /**
+     * Creates the Member table.
+     *
+     * @throws SQLException Thrown if there is an error
+     */
     private void createMemberTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(MEMBER_SQL);
         statement.close();
     }
 
+    /**
+     * Creates the Class table.
+     *
+     * @throws SQLException Thrown if there is an error
+     */
     private void createClassTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLASS_SQL);
         statement.close();
     }
 
+    /**
+     * Creates the ClassMember table.
+     *
+     * @throws SQLException Thrown if there is an error
+     */
     private void createClassMemberTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLASS_MEMBER_SQL);
