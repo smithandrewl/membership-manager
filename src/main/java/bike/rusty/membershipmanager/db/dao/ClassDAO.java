@@ -13,16 +13,15 @@ public class ClassDAO extends BaseDAO {
         String.join(
             "\n",
             "SELECT",
-            "    *,",
-            "FROM",
-            "    class;"
+            "    *",
+            "FROM class"
         );
 
     String GET_BY_ID_SQL =
         String.join(
             "\n",
             "SELECT",
-            "    *,",
+            "    *",
             "FROM",
             "    class",
             "WHERE",
