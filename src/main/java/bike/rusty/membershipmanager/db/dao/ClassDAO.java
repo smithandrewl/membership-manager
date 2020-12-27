@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.Vector;
 
 public class ClassDAO extends BaseDAO {
@@ -65,26 +66,37 @@ public class ClassDAO extends BaseDAO {
         return classes;
     }
 
-    public Class getClassById(int classId) throws SQLException {
+    /**
+     * Gets a class by Id
+     * @param classId the id of the class
+     * @return The class if it exists, or Optional.empty() otherwise.
+     * @throws SQLException An exception if one is thrown.
+     */
+    public Optional<Class> getClassById(int classId) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(GET_BY_ID_SQL);
 
         statement.setInt(1, classId);
 
         ResultSet rs = statement.executeQuery();
 
-        rs.next();
+        Optional<Class> result = Optional.empty();
 
-        Class clubClass = new Class(
-            rs.getInt("classId"),
-            rs.getInt("clubId"),
-            rs.getString("name"),
-            rs.getString("description")
-        );
+        if(rs.next()) {
+            Class clubClass = new Class(
+                rs.getInt("classId"),
+                rs.getInt("clubId"),
+                rs.getString("name"),
+                rs.getString("description")
+            );
+
+            result = Optional.of(clubClass);
+
+        }
 
         rs.close();
         statement.close();
 
-        return clubClass;
+        return result;
     }
 
     public int addClass(Class clubClass) throws SQLException {
