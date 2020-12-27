@@ -53,7 +53,18 @@ public class BaseDAO {
             "    )",
             ");"
     );
-    
+
+    public static final String CLUB_INSERT_SQL = String.join(
+        "\n",
+        "INSERT INTO club(",
+        "    name",
+        "    description",
+        ") values (",
+        "    'Unknown'",
+        "    'The default club'",
+        ");"
+    );
+
     public BaseDAO() throws SQLException {
         System.out.println("Inside BaseDAO");
 
@@ -93,6 +104,8 @@ public class BaseDAO {
         createMemberTable();
         createClassTable();
         createClassMemberTable();
+
+        insertClubRecord();
     }
 
     /**
@@ -136,6 +149,12 @@ public class BaseDAO {
     private void createClassMemberTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLASS_MEMBER_SQL);
+        statement.close();
+    }
+
+    private void insertClubRecord() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(CLUB_INSERT_SQL);
         statement.close();
     }
 }
