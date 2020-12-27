@@ -9,7 +9,8 @@ import java.sql.*;
 public class BaseDAO {
     public static final String CONNECTION_STRING ="jdbc:sqlite:members.db";
 
-    Connection connection = null;
+    static Connection connection = null;
+
     public static final String CLUB_SQL = String.join(
         "\n",
         "CREATE TABLE club(",
@@ -57,10 +58,10 @@ public class BaseDAO {
     public static final String CLUB_INSERT_SQL = String.join(
         "\n",
         "INSERT INTO club(",
-        "    name",
+        "    name,",
         "    description",
         ") values (",
-        "    'Unknown'",
+        "    'Unknown',",
         "    'The default club'",
         ");"
     );
@@ -68,22 +69,25 @@ public class BaseDAO {
     public BaseDAO() throws SQLException {
         System.out.println("Inside BaseDAO");
 
-        System.out.println("Checking to see if the database exists on disk");
-        // create the database if it does not exist
-        boolean shouldCreateDatabase = !doesDatabaseExist();
+        if(connection == null) {
+            System.out.println("Checking to see if the database exists on disk");
+            // create the database if it does not exist
+            boolean shouldCreateDatabase = !doesDatabaseExist();
 
-        System.out.printf("Does members.db exist: %s\n", !shouldCreateDatabase);
+            System.out.printf("Does members.db exist: %s\n", !shouldCreateDatabase);
 
-        if(shouldCreateDatabase) {
-            System.out.println("Creating members.db");
-        } else {
-            System.out.println("Opening members.db");
-        }
-        connection = DriverManager.getConnection(CONNECTION_STRING);
+            if (shouldCreateDatabase) {
+                System.out.println("Creating members.db");
+            } else {
+                System.out.println("Opening members.db");
+            }
+            connection = DriverManager.getConnection(CONNECTION_STRING);
 
-        if(!doesDatabaseExist()) {
-            System.out.println("Creating database tables");
-            createDatabaseTables();
+            if (shouldCreateDatabase) {
+                System.out.println("Creating database tables");
+                createDatabaseTables();
+            }
+
         }
 
     }
@@ -115,6 +119,7 @@ public class BaseDAO {
      */
     private void createClubTable() throws SQLException {
         Statement statement = connection.createStatement();
+        System.out.println(CLUB_SQL);
         statement.execute(CLUB_SQL);
         statement.close();
     }
