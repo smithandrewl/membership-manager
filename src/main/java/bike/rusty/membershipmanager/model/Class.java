@@ -41,4 +41,14 @@ public class Class {
         this.name        = name;
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Class{" +
+            "classId=" + classId +
+            ", clubId=" + clubId +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            '}';
+    }
 }
