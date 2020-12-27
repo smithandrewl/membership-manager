@@ -57,6 +57,10 @@ public class App
 
             System.out.println();
 
+            Member firstMember = memberDAO.getById(1);
+
+            System.out.println("Printing first member");
+            System.out.println(firstMember);
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());
         }
