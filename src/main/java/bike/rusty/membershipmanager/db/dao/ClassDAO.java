@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 public class ClassDAO extends BaseDAO {
     String GET_SQL =
@@ -41,23 +42,28 @@ public class ClassDAO extends BaseDAO {
     public ClassDAO() throws SQLException {
     }
 
-    public Class getClasses() throws SQLException {
+    public Vector<Class> getClasses() throws SQLException {
+        Vector<Class> classes = new Vector<>();
+
         Statement statement = connection.createStatement();
 
         ResultSet rs = statement.executeQuery(GET_SQL);
-        rs.next();
 
-        Class clubClass = new Class(
-            rs.getInt("classId"),
-            rs.getInt("clubId"),
-            rs.getString("name"),
-            rs.getString("description")
-        );
+        while(rs.next()) {
+            classes.add(
+                new Class(
+                    rs.getInt("classId"),
+                    rs.getInt("clubId"),
+                    rs.getString("name"),
+                    rs.getString("description")
+                )
+            );
+        }
 
         rs.close();
         statement.close();
 
-        return clubClass;
+        return classes;
     }
 
     public Class getClassById(int classId) throws SQLException {
