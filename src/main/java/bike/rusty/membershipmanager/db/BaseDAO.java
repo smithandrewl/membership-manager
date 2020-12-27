@@ -69,20 +69,24 @@ public class BaseDAO {
     private void createClubTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLUB_SQL);
+        statement.close();
     }
 
     private void createMemberTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(MEMBER_SQL);
+        statement.close();
     }
 
     private void createClassTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLASS_SQL);
+        statement.close();
     }
 
     private void createClassMemberTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLASS_MEMBER_SQL);
+        statement.close();
     }
 }
