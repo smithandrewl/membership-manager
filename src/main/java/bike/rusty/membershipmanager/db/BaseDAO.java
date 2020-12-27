@@ -12,8 +12,8 @@ public class BaseDAO {
     public static final String CLUB_SQL = String.join(
         "\n",
         "CREATE TABLE club(",
-        "    clubId INTEGER PRIMARY KEY AUTOINCREMENT,",
-        "    name VARCHAR(255),",
+        "    clubId      INTEGER PRIMARY KEY AUTOINCREMENT,",
+        "    name        VARCHAR(255),",
         "    description TEXT",
         ");"
     );
