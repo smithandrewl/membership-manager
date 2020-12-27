@@ -10,6 +10,7 @@ import java.util.Vector;
 public class MemberDAO extends BaseDAO {
     String GET_SQL = "SELECT * FROM member;";
     String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
+    String ADD_SQL = "INSERT INTO member(clubId, firstName, lastName) VALUES(?, ?, ?)";
 
     public MemberDAO() throws SQLException { }
 
@@ -36,9 +37,10 @@ public class MemberDAO extends BaseDAO {
     public Member getById(int memberId) throws SQLException {
 
         PreparedStatement statement = connection.prepareStatement(
-            FIND_BY_ID_SQL,
-            memberId
+            FIND_BY_ID_SQL
         );
+
+        statement.setInt(1, memberId);
 
         ResultSet rs =statement.executeQuery();
 
@@ -54,5 +56,16 @@ public class MemberDAO extends BaseDAO {
         rs.close();
 
         return member;
+    }
+
+    public int addMember(Member member) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(ADD_SQL);
+
+        statement.setInt(1, member.getClubId());
+        statement.setString(2, member.getFirstName());
+        statement.setString(3, member.getLastName());
+
+        statement.execute();
+        return statement.getGeneratedKeys().getInt(1);
     }
 }
