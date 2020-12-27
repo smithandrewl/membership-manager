@@ -8,7 +8,7 @@ public class BaseDAO {
     public static final String CONNECTION_STRING ="jdbc:sqlite:members.db";
 
     Connection connection = DriverManager.getConnection(CONNECTION_STRING);
-    public static final String Club_SQL = String.join(
+    public static final String CLUB_SQL = String.join(
         "\n",
         "CREATE TABLE club(",
         "    clubId INTEGER PRIMARY KEY AUTOINCREMENT,",
