@@ -1,6 +1,6 @@
 package bike.rusty.membershipmanager;
 
-import bike.rusty.membershipmanager.db.BaseDAO;
+import bike.rusty.membershipmanager.db.dao.BaseDAO;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package bike.rusty.membershipmanager.db;
+package bike.rusty.membershipmanager.db.dao;
 
 import java.io.File;
 import java.sql.*;
