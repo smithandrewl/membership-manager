@@ -3,6 +3,7 @@ package bike.rusty.membershipmanager.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class BaseDAO {
     public static final String CONNECTION_STRING ="jdbc:sqlite:members.db";
@@ -58,26 +59,30 @@ public class BaseDAO {
     }
 
 
-    private void createDatabaseTables() {
+    private void createDatabaseTables() throws SQLException {
         createClubTable();
         createMemberTable();
         createClassTable();
         createClassMemberTable();
     }
 
-    private void createClubTable() {
-
+    private void createClubTable() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(CLUB_SQL);
     }
 
-    private void createMemberTable() {
-
+    private void createMemberTable() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(MEMBER_SQL);
     }
 
-    private void createClassTable() {
-
+    private void createClassTable() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(CLASS_SQL);
     }
 
-    private void createClassMemberTable() {
-
+    private void createClassMemberTable() throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(CLASS_MEMBER_SQL);
     }
 }
