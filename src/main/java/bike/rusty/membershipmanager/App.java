@@ -1,7 +1,9 @@
 package bike.rusty.membershipmanager;
 
+import bike.rusty.membershipmanager.db.dao.ClassDAO;
 import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
+import bike.rusty.membershipmanager.model.Class;
 import bike.rusty.membershipmanager.model.Club;
 import bike.rusty.membershipmanager.model.Member;
 
@@ -12,7 +14,7 @@ import java.util.Vector;
  * Membership Manager Example
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
@@ -20,12 +22,28 @@ public class App
         try {
             ClubDAO clubDAO = new ClubDAO();
             MemberDAO memberDAO = new MemberDAO();
-
+            ClassDAO classDAO = new ClassDAO();
 
             System.out.println("Getting club information");
             Club club = clubDAO.getClub();
             memberDAO.addMember(
                 new Member(club.getClubId(), "Andrew", "Smith")
+            );
+
+            classDAO.addClass(
+                new Class(
+                    club.getClubId(),
+                    "Club one",
+                    "Test club"
+                )
+            );
+
+            classDAO.addClass(
+                new Class(
+                    club.getClubId(),
+                    "Club two",
+                    "Test club"
+                )
             );
 
             memberDAO.addMember(
@@ -61,6 +79,13 @@ public class App
 
             System.out.println("Printing first member");
             System.out.println(firstMember);
+            System.out.println();
+            System.out.println();
+            System.out.println("Classes:");
+
+            for(Class clubClass : classDAO.getClasses()) {
+                System.out.println(clubClass);
+            }
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());
         }
