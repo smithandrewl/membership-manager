@@ -92,6 +92,10 @@ public class BaseDAO {
 
     }
 
+    /**
+     * Determines whether the database file exists on disk.
+     * @return whether the database file exists on disk.
+     */
     private boolean doesDatabaseExist() {
         File database = new File("members.db");
 
@@ -157,6 +161,10 @@ public class BaseDAO {
         statement.close();
     }
 
+    /**
+     * Creates the default club with default values.
+     * @throws SQLException Thrown if there is an error
+     */
     private void insertClubRecord() throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute(CLUB_INSERT_SQL);
