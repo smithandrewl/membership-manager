@@ -42,7 +42,8 @@ public class MembersScreen implements IScreen {
 
                 System.out.println("Please enter a number:");
                 System.out.println("1. List all members");
-                System.out.println("2. Return to the main menu");
+                System.out.println("2. Add a member");
+                System.out.println("3. Return to the main menu");
 
                 Scanner scanner = new Scanner(System.in);
 
@@ -61,7 +62,20 @@ public class MembersScreen implements IScreen {
                             }
                             System.out.println();
                         }
+                        break;
                     case 2:
+                        Scanner nestedScanner = new Scanner(System.in);
+
+                        System.out.println("Adding a new member:");
+                        System.out.println("Please enter a first name");
+                        String firstName = nestedScanner.nextLine();
+                        System.out.println("Please enter a last name");
+                        String lastName = nestedScanner.nextLine();
+
+                        memberDao.addMember(new Member(clubDao.getClub().getClubId(), firstName, lastName));
+
+                        break;
+                    case 3:
                         return;
                     default:
                         System.out.println("Error: Please enter a valid option!");
