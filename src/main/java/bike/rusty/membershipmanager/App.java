@@ -32,7 +32,7 @@ public class App
 
             screens.add(mainScreen);
 
-            ScreenManager screenManager = new ScreenManager(mainScreen, screens);
+            ScreenManager screenManager = new ScreenManager(mainScreen, screens, classDAO, clubDAO, memberDAO);
             screenManager.start();
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());

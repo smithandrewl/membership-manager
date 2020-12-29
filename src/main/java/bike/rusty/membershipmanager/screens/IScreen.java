@@ -4,6 +4,8 @@ import bike.rusty.membershipmanager.db.dao.ClassDAO;
 import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
 
+import java.sql.SQLException;
+
 public interface IScreen {
     void init(
         ClassDAO classDAO,
@@ -13,5 +15,5 @@ public interface IScreen {
 
     void entering();
     void exiting();
-    void start();
+    void start() throws SQLException;
 }

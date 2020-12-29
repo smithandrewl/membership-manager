@@ -4,6 +4,9 @@ import bike.rusty.membershipmanager.db.dao.ClassDAO;
 import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
 
+import java.sql.SQLException;
+import java.util.Scanner;
+
 public class MainScreen implements IScreen{
     private MemberDAO memberDAO;
     private ClassDAO classDAO;
@@ -27,7 +30,7 @@ public class MainScreen implements IScreen{
     }
 
     @Override
-    public void start() {
+    public void start() throws SQLException {
         System.out.println(
             String.join(
                 "\n",
@@ -38,15 +41,67 @@ public class MainScreen implements IScreen{
                 "\\/    \\/\\___|_| |_| |_|_.__/ \\___|_|  |___/_| |_|_| .__/     ",
                 "                                                  |_|            ",
                 "                                                                 ",
-                "       /\\/\\   __ _ _ __   __ _  __ _  ___ _ __                     ",
-                "      /    \\ / _` | '_ \\ / _` |/ _` |/ _ \\ '__|                   ",
-                "     / /\\/\\ \\ (_| | | | | (_| | (_| |  __/ |                      ",
-                "     \\/    \\/\\__,_|_| |_|\\__,_|\\__, |\\___|_|                   ",
-                "                           |___/                                 ",
+                "       /\\/\\   __ _ _ __   __ _  __ _  ___ _ __                 ",
+                "      /    \\ / _` | '_ \\ / _` |/ _` |/ _ \\ '__|               ",
+                "     / /\\/\\ \\ (_| | | | | (_| | (_| |  __/ |                  ",
+                "     \\/    \\/\\__,_|_| |_|\\__,_|\\__, |\\___|_|               ",
+                "                           |___/                                 "));
+
+
+
+        while(true) {
+            try {
+                displayMenuPrompt();
+                Scanner scanner = new Scanner(System.in);
+                int choice = scanner.nextInt();
+
+                System.out.println(choice);
+
+                switch(choice) {
+                    case 1:
+                        switchToAdminScreen();
+                        break;
+                    case 2:
+                        switchToClassesScreen();
+                        break;
+                    case 3:
+                        switchToMembersScreen();
+                        break;
+                    case 4:
+                        exitApplication();
+                }
+            } catch (Exception e) {
+                System.out.println("Please enter a valid numeric choice.");
+            }
+        }
+    }
+
+    private void displayMenuPrompt() throws SQLException {
+        System.out.println(
+            String.join(
+                "\n",
+                "    Welcome to club '" + clubDAO.getClub().getName() + "' Please enter a number:",
                 "               1. Administration",
                 "               2. Classes",
-                "               3. Members"
+                "               3. Members",
+                "               4. Exit"
             )
         );
+    }
+
+    public void switchToAdminScreen() {
+        System.out.println("Admin screen!");
+    }
+
+    public void switchToClassesScreen() {
+        System.out.println("Classes screen!");
+    }
+
+    public void switchToMembersScreen() {
+        System.out.println("Members screen!");
+    }
+
+    public void exitApplication() {
+        System.exit(0);
     }
 }
