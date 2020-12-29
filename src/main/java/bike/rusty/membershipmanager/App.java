@@ -3,9 +3,9 @@ package bike.rusty.membershipmanager;
 import bike.rusty.membershipmanager.db.dao.ClassDAO;
 import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
-import bike.rusty.membershipmanager.model.Class;
-import bike.rusty.membershipmanager.model.Club;
-import bike.rusty.membershipmanager.model.Member;
+import bike.rusty.membershipmanager.db.model.Class;
+import bike.rusty.membershipmanager.db.model.Club;
+import bike.rusty.membershipmanager.db.model.Member;
 
 import java.sql.SQLException;
 import java.util.Vector;

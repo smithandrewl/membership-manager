@@ -1,6 +1,6 @@
 package bike.rusty.membershipmanager.db.dao;
 
-import bike.rusty.membershipmanager.model.Class;
+import bike.rusty.membershipmanager.db.model.Class;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

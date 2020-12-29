@@ -1,4 +1,4 @@
-package bike.rusty.membershipmanager.model;
+package bike.rusty.membershipmanager.db.model;
 
 /**
  * Represents a class offered by the club.
