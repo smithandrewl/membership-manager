@@ -39,8 +39,8 @@ public class AdminScreen implements IScreen{
             try {
 
                 System.out.println("Please enter a number:");
-                System.out.println("1. Return to the main menu");
-                System.out.println("2. Change the club name");
+                System.out.println("1. Change the club name");
+                System.out.println("2. Return to the main menu");
 
                 Scanner scanner = new Scanner(System.in);
 

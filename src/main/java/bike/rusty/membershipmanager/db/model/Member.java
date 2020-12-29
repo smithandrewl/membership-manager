@@ -65,11 +65,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
-                "memberId    ="   + memberId  +
-                ", clubId    ="   + clubId    +
-                ", firstName ='"  + firstName + '\'' +
-                ", lastName  ='"  + lastName  + '\'' +
-                '}';
+        return String.format("#%d: %s, %s", memberId, firstName, lastName);
     }
 }
