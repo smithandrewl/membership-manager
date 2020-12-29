@@ -112,8 +112,10 @@ public class MainScreen implements IScreen{
     /**
      * Switches from the main screen to the classes screen.
      */
-    public void switchToClassesScreen() {
-        System.out.println("Classes screen!");
+    public void switchToClassesScreen() throws SQLException {
+        this.screenManager.changeScreen(
+            new ClassesScreen()
+        );
     }
 
     /**
