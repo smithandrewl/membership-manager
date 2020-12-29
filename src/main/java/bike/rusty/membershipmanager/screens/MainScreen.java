@@ -7,6 +7,9 @@ import bike.rusty.membershipmanager.db.dao.MemberDAO;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * The main menu screen.
+ */
 public class MainScreen implements IScreen{
     private MemberDAO memberDAO;
     private ClassDAO classDAO;
@@ -76,6 +79,10 @@ public class MainScreen implements IScreen{
         }
     }
 
+    /**
+     * Shows the input prompt.
+     * @throws SQLException
+     */
     private void displayMenuPrompt() throws SQLException {
         System.out.println(
             String.join(
@@ -89,18 +96,31 @@ public class MainScreen implements IScreen{
         );
     }
 
+    /**
+     * Switches from the main screen to the admin screen.
+     */
     public void switchToAdminScreen() {
         System.out.println("Admin screen!");
     }
 
+
+    /**
+     * Switches from the main screen to the classes screen.
+     */
     public void switchToClassesScreen() {
         System.out.println("Classes screen!");
     }
 
+    /**
+     * Switches from the main screen to the membersScreen.
+     */
     public void switchToMembersScreen() {
         System.out.println("Members screen!");
     }
 
+    /**
+     * Exits the application.
+     */
     public void exitApplication() {
         System.exit(0);
     }
