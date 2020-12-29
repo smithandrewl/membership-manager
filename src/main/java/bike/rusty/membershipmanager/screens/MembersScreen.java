@@ -6,6 +6,8 @@ import bike.rusty.membershipmanager.db.dao.MemberDAO;
 import bike.rusty.membershipmanager.db.model.Member;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -43,7 +45,8 @@ public class MembersScreen implements IScreen {
                 System.out.println("Please enter a number:");
                 System.out.println("1. List all members");
                 System.out.println("2. Add a member");
-                System.out.println("3. Return to the main menu");
+                System.out.println("3. Delete a member");
+                System.out.println("4. Return to the main menu");
 
                 Scanner scanner = new Scanner(System.in);
 
@@ -76,6 +79,29 @@ public class MembersScreen implements IScreen {
 
                         break;
                     case 3:
+                        boolean finished = false;
+                        while(!finished) {
+                            try {
+                                System.out.println("Delete a member");
+                                Scanner deleteScanner = new Scanner(System.in);
+                                System.out.println("Please enter the id of the member to delete:");
+                                int id = deleteScanner.nextInt();
+
+                                Optional<Member> member = memberDao.getById(id);
+
+                                if(member.isPresent()) {
+                                    memberDao.delete(id);
+                                    finished = true;
+
+                                } else {
+                                    System.out.printf("There is no user with an id of %s%n",id);
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Please enter a valid number!");
+                            }
+                        }
+                        break;
+                    case 4:
                         return;
                     default:
                         System.out.println("Error: Please enter a valid option!");
