@@ -48,6 +48,8 @@ public class AdminScreen implements IScreen{
                 switch(choice) {
                     case 1:
                         return;
+                    default:
+                        System.out.println("Error: Please enter a valid option!");
                 }
             } catch(Exception e) {
                 System.out.println("Please enter a valid numeric value");

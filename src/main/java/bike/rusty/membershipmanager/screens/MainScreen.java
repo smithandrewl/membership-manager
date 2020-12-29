@@ -75,6 +75,8 @@ public class MainScreen implements IScreen{
                         break;
                     case 4:
                         exitApplication();
+                    default:
+                        System.out.println("Error: Please enter a valid option!");
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid numeric choice.");
