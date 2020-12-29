@@ -14,12 +14,15 @@ public class MainScreen implements IScreen{
     private MemberDAO memberDAO;
     private ClassDAO classDAO;
     private ClubDAO clubDAO;
+    private ScreenManager screenManager;
+
 
     @Override
-    public void init(ClassDAO classDAO, ClubDAO clubDAO, MemberDAO memberDAO) {
+    public void init(ClassDAO classDAO, ClubDAO clubDAO, MemberDAO memberDAO, ScreenManager screenManager) {
         this.classDAO = classDAO;
         this.clubDAO = clubDAO;
         this.memberDAO = memberDAO;
+        this.screenManager = screenManager;
     }
 
     @Override

@@ -28,11 +28,8 @@ public class App
             ClassDAO classDAO = new ClassDAO();
 
             MainScreen mainScreen = new MainScreen();
-            Vector<IScreen> screens = new Vector();
 
-            screens.add(mainScreen);
-
-            ScreenManager screenManager = new ScreenManager(mainScreen, screens, classDAO, clubDAO, memberDAO);
+            ScreenManager screenManager = new ScreenManager(mainScreen, classDAO, clubDAO, memberDAO);
             screenManager.start();
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());

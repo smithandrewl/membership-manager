@@ -22,14 +22,12 @@ public class ScreenManager {
      * Creates a new screen manager.
      *
      * @param initialScreen The screen to start at.
-     * @param screens       A vector of all of the screens (including the start screen)
      * @param classDao      The classDAO to interact with the class table.
      * @param clubDao       The clubDAO to interact with the club table.
      * @param memberDao     The memberDAO to interact with the member table.
      */
     public ScreenManager(
         IScreen initialScreen,
-        Vector<IScreen> screens,
         ClassDAO classDao,
         ClubDAO clubDao,
         MemberDAO memberDao
@@ -46,7 +44,7 @@ public class ScreenManager {
      * @throws SQLException
      */
     public void start() throws SQLException {
-        currentScreen.init(classDao, clubDao, memberDao);
+        currentScreen.init(classDao, clubDao, memberDao, this);
         currentScreen.entering();
         currentScreen.start();
     }
@@ -60,7 +58,7 @@ public class ScreenManager {
     public void changeScreen(IScreen newScreen) throws SQLException {
         currentScreen.exiting();
         currentScreen = newScreen;
-        currentScreen.init(classDao, clubDao, memberDao);
+        currentScreen.init(classDao, clubDao, memberDao, this);
         currentScreen.entering();
         currentScreen.start();
     }
