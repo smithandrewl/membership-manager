@@ -61,11 +61,6 @@ public class Class {
 
     @Override
     public String toString() {
-        return "Class{" +
-            "classId       ="  + classId     +
-            ", clubId      ="  + clubId      +
-            ", name        ='" + name        + '\'' +
-            ", description ='" + description + '\'' +
-            '}';
+        return String.format("%s (%s)", name, description);
     }
 }

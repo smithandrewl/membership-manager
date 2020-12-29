@@ -45,7 +45,8 @@ public class ClassesScreen implements IScreen {
                 System.out.println("Please enter a number:");
 
                 System.out.println("1. List classes");
-                System.out.println("2. Return to the main menu");
+                System.out.println("2. Add a class");
+                System.out.println("3. Return to the main menu");
                 Scanner scanner = new Scanner(System.in);
 
                 int choice = scanner.nextInt();
@@ -56,13 +57,36 @@ public class ClassesScreen implements IScreen {
 
                         if(classes.isEmpty()) {
                             System.out.println("There are currently no classes!");
+                            System.out.println();
                         } else {
+                            System.out.println("Classes:");
                             for(Class clubClass : classes) {
-                                System.out.println(clubClass);
+                                System.out.println("\t" + clubClass);
                             }
+                            System.out.println();
                         }
                         break;
                     case 2:
+                        System.out.println("Adding a class:");
+                        while(true) {
+                            Scanner addScanner = new Scanner(System.in);
+                            System.out.println("Please enter a class name");
+                            String name = addScanner.nextLine();
+                            System.out.println("Please enter a class description");
+                            String description = addScanner.nextLine();
+
+                            classDao.addClass(new Class(
+                                clubDao.getClub().getClubId(),
+                                name,
+                                description
+                            ));
+
+                            System.out.println();
+                            break;
+                        }
+
+                        break;
+                    case 3:
                         return;
                     default:
                         System.out.println("Error: Please enter a valid option!");
