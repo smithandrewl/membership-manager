@@ -121,8 +121,10 @@ public class MainScreen implements IScreen{
     /**
      * Switches from the main screen to the membersScreen.
      */
-    public void switchToMembersScreen() {
-        System.out.println("Members screen!");
+    public void switchToMembersScreen() throws SQLException {
+        this.screenManager.changeScreen(
+            new MembersScreen()
+        );
     }
 
     /**
