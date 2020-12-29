@@ -40,6 +40,7 @@ public class AdminScreen implements IScreen{
 
                 System.out.println("Please enter a number:");
                 System.out.println("1. Return to the main menu");
+                System.out.println("2. Change the club name");
 
                 Scanner scanner = new Scanner(System.in);
 
@@ -47,6 +48,19 @@ public class AdminScreen implements IScreen{
 
                 switch(choice) {
                     case 1:
+                        while(true) {
+                            Scanner innerScanner = new Scanner(System.in);
+                            try {
+                                System.out.println("Please enter the new name: ");
+                                String newName = innerScanner.nextLine();
+
+                                clubDao.updateName(newName);
+                                return;
+                            } catch (Exception e) {
+                                System.out.println("Error: Please enter a valid name!" + e.getMessage());
+                            }
+                        }
+                    case 2:
                         return;
                     default:
                         System.out.println("Error: Please enter a valid option!");

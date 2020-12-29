@@ -2,6 +2,7 @@ package bike.rusty.membershipmanager.db.dao;
 
 import bike.rusty.membershipmanager.db.model.Club;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,5 +37,19 @@ public class ClubDAO extends BaseDAO{
         statement.close();
 
         return club;
+    }
+
+    /**
+     * Updates the name of the club.
+     * @param newName The new name of the club.
+     * @throws SQLException
+     */
+    public void updateName(String newName) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("UPDATE club SET name = ? WHERE clubId = ?");
+        statement.setString(1, newName);
+        statement.setInt(2, getClub().getClubId());
+
+        statement.execute();
+        statement.close();
     }
 }
