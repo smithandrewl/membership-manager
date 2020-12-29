@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.Vector;
 
 /**
  * Provides access to the Members database table.
  */
 public class MemberDAO extends BaseDAO {
+    public static final String DELETE_SQL = "DELETE FROM member WHERE memberId = ?";
     String GET_SQL        = "SELECT * FROM member;";
     String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
     String ADD_SQL        = "INSERT INTO member(clubId, firstName, lastName) VALUES(?, ?, ?)";
@@ -62,7 +64,7 @@ public class MemberDAO extends BaseDAO {
      * @return The member with the matching member id.
      * @throws SQLException Thrown in case of a database error
      */
-    public Member getById(int memberId) throws SQLException {
+    public Optional<Member> getById(int memberId) throws SQLException {
 
         PreparedStatement statement = connection.prepareStatement(
             FIND_BY_ID_SQL
@@ -72,18 +74,23 @@ public class MemberDAO extends BaseDAO {
 
         ResultSet rs =statement.executeQuery();
 
-        rs.next();
+        boolean exists = rs.next();
 
-        Member member = new Member(
-            rs.getInt("memberId"),
-            rs.getInt("clubId"),
-            rs.getString("firstName"),
-            rs.getString("lastName")
-        );
+        if(exists) {
+            Member member = new Member(
+                rs.getInt("memberId"),
+                rs.getInt("clubId"),
+                rs.getString("firstName"),
+                rs.getString("lastName")
+            );
 
-        rs.close();
+            rs.close();
 
-        return member;
+            return Optional.of(member);
+        } else {
+            rs.close();
+            return Optional.empty();
+        }
     }
 
     /**
@@ -118,6 +125,14 @@ public class MemberDAO extends BaseDAO {
         statement.setString(3, member.getLastName());
         statement.setInt(4,    member.getMemberId());
 
+        statement.execute();
+        statement.close();
+    }
+
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(DELETE_SQL);
+
+        statement.setInt(1, id);
         statement.execute();
         statement.close();
     }
