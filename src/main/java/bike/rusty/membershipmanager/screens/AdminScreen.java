@@ -8,27 +8,16 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AdminScreen implements IScreen{
-    private ClassDAO classDao;
     private ClubDAO clubDao;
-    private MemberDAO memberDao;
-    private ScreenManager screenManager;
 
     @Override
-    public void init(ClassDAO classDAO, ClubDAO clubDAO, MemberDAO memberDAO, ScreenManager screenManager) {
-        this.classDao = classDAO;
+    public void init(
+        ClassDAO classDAO,
+        ClubDAO clubDAO,
+        MemberDAO memberDAO,
+        ScreenManager screenManager
+    ) {
         this.clubDao = clubDAO;
-        this.memberDao = memberDAO;
-        this.screenManager = screenManager;
-    }
-
-    @Override
-    public void entering() {
-
-    }
-
-    @Override
-    public void exiting() {
-
     }
 
     @Override

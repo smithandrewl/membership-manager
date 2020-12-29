@@ -18,13 +18,19 @@ public class App
     {
 
         try {
-            ClubDAO clubDAO = new ClubDAO();
+            ClubDAO   clubDAO   = new ClubDAO();
             MemberDAO memberDAO = new MemberDAO();
-            ClassDAO classDAO = new ClassDAO();
+            ClassDAO  classDAO  = new ClassDAO();
 
             MainScreen mainScreen = new MainScreen();
 
-            ScreenManager screenManager = new ScreenManager(mainScreen, classDAO, clubDAO, memberDAO);
+            ScreenManager screenManager = new ScreenManager(
+                mainScreen,
+                classDAO,
+                clubDAO,
+                memberDAO
+            );
+
             screenManager.start();
         } catch (SQLException e) {
             System.err.printf("Error opening database:%s", e.getMessage());

@@ -5,7 +5,6 @@ import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
 
 import java.sql.SQLException;
-import java.util.Vector;
 
 /**
  * This class manages the screens that can be accessed and displays
@@ -45,7 +44,6 @@ public class ScreenManager {
      */
     public void start() throws SQLException {
         currentScreen.init(classDao, clubDao, memberDao, this);
-        currentScreen.entering();
         currentScreen.start();
     }
 
@@ -56,10 +54,8 @@ public class ScreenManager {
      * @throws SQLException
      */
     public void changeScreen(IScreen newScreen) throws SQLException {
-        currentScreen.exiting();
         currentScreen = newScreen;
         currentScreen.init(classDao, clubDao, memberDao, this);
-        currentScreen.entering();
         currentScreen.start();
     }
 }

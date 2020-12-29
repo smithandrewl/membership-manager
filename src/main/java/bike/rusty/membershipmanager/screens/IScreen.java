@@ -26,7 +26,5 @@ public interface IScreen {
         ScreenManager screenManager
     );
 
-    void entering();
-    void exiting();
     void start() throws SQLException;
 }

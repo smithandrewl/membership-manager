@@ -11,28 +11,19 @@ import java.util.Scanner;
  * The main menu screen.
  */
 public class MainScreen implements IScreen{
-    private MemberDAO memberDAO;
-    private ClassDAO classDAO;
     private ClubDAO clubDAO;
     private ScreenManager screenManager;
 
 
     @Override
-    public void init(ClassDAO classDAO, ClubDAO clubDAO, MemberDAO memberDAO, ScreenManager screenManager) {
-        this.classDAO = classDAO;
-        this.clubDAO = clubDAO;
-        this.memberDAO = memberDAO;
+    public void init(
+        ClassDAO      classDAO,
+        ClubDAO       clubDAO,
+        MemberDAO     memberDAO,
+        ScreenManager screenManager
+    ) {
+        this.clubDAO       = clubDAO;
         this.screenManager = screenManager;
-    }
-
-    @Override
-    public void entering() {
-
-    }
-
-    @Override
-    public void exiting() {
-
     }
 
     @Override
