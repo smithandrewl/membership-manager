@@ -5,6 +5,7 @@ import bike.rusty.membershipmanager.db.dao.ClubDAO;
 import bike.rusty.membershipmanager.db.dao.MemberDAO;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class ClassesScreen implements IScreen {
     private ClassDAO classDao;
@@ -33,6 +34,26 @@ public class ClassesScreen implements IScreen {
 
     @Override
     public void start() throws SQLException {
+
         System.out.println("Classes screen!");
+
+        while(true) {
+            try {
+
+                System.out.println("Please enter a number:");
+                System.out.println("1. Return to the main menu");
+
+                Scanner scanner = new Scanner(System.in);
+
+                int choice = scanner.nextInt();
+
+                switch(choice) {
+                    case 1:
+                        return;
+                }
+            } catch(Exception e) {
+                System.out.println("Please enter a valid numeric value");
+            }
+        }
     }
 }
