@@ -68,10 +68,10 @@ public class MainScreen implements IScreen{
                         switchToAdminScreen();
                         break;
                     case 2:
-                        switchToClassesScreen();
+                        switchToMembersScreen();
                         break;
                     case 3:
-                        switchToMembersScreen();
+                        switchToClassesScreen();
                         break;
                     case 4:
                         exitApplication();
@@ -94,8 +94,8 @@ public class MainScreen implements IScreen{
                 "\n",
                 "    Welcome to club '" + clubDAO.getClub().getName() + "' Please enter a number:",
                 "               1. Administration",
-                "               2. Classes",
-                "               3. Members",
+                "               2. Members",
+                "               3. Classes",
                 "               4. Exit"
             )
         );
