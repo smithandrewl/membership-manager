@@ -102,8 +102,10 @@ public class MainScreen implements IScreen{
     /**
      * Switches from the main screen to the admin screen.
      */
-    public void switchToAdminScreen() {
-        System.out.println("Admin screen!");
+    public void switchToAdminScreen() throws SQLException {
+        this.screenManager.changeScreen(
+            new AdminScreen()
+        );
     }
 
 
