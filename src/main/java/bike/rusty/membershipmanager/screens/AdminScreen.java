@@ -7,6 +7,9 @@ import bike.rusty.membershipmanager.db.dao.MemberDAO;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * Implements the Admin menu screen.
+ */
 public class AdminScreen implements IScreen{
     private ClubDAO clubDao;
 
@@ -25,6 +28,16 @@ public class AdminScreen implements IScreen{
         System.out.println("Admin screen!");
 
         while(true) {
+            // Try catch statements are used for error handling.
+            // Any part of the 'try' block can 'throw' an Exception, which holds data about an error.
+            // The 'catch' block below is responsible for handling the error.
+            //
+            // If a method knows an exception may be thrown, but does not want to directly handle it,
+            // then it can add 'throws ExceptionName' to the end of the method definition.
+            // In this case, it would be a SQLException, so we add 'throws SQLException' to the method definition.
+            //
+            // An Exception 'bubbles' up this way until it is handled somewhere else, or an application crash will
+            // occur and the Exception will be displayed.
             try {
 
                 System.out.println("Please enter a number:");
@@ -43,6 +56,7 @@ public class AdminScreen implements IScreen{
                                 System.out.println("Please enter the new name: ");
                                 String newName = innerScanner.nextLine();
 
+                                // Use the Club DAO to update the name of the club.
                                 clubDao.updateName(newName);
                                 return;
                             } catch (Exception e) {

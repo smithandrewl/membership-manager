@@ -12,6 +12,7 @@ import java.sql.Statement;
  */
 public class ClubDAO extends BaseDAO{
 
+    // SQL for getting all of the clubs from the database.
     String GET_SQL = "SELECT * FROM club;";
 
     public ClubDAO() throws SQLException {
@@ -45,6 +46,7 @@ public class ClubDAO extends BaseDAO{
      * @throws SQLException
      */
     public void updateName(String newName) throws SQLException {
+        // This call contains a SQL statement which updates a specific club to have a new name.
         PreparedStatement statement = connection.prepareStatement("UPDATE club SET name = ? WHERE clubId = ?");
         statement.setString(1, newName);
         statement.setInt(2, getClub().getClubId());

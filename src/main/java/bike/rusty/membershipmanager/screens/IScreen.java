@@ -9,6 +9,9 @@ import java.sql.SQLException;
 /**
  * This interface specifies all methods that menu screens must
  * implement.
+ *
+ * In this case, only the start method is needed, to indicate that a change
+ * is happening from one screen to another.
  */
 public interface IScreen {
     /**

@@ -11,6 +11,7 @@ public class BaseDAO {
 
     static Connection connection = null;
 
+    // This is the SQL statement which creates the Club table.
     public static final String CLUB_SQL = String.join(
         "\n",
         "CREATE TABLE club(",
@@ -20,6 +21,7 @@ public class BaseDAO {
         ");"
     );
 
+    // This is the SQL statement which creates the Member table.
     public static final String MEMBER_SQL = String.join(
         "\n",
         "Create table member(",
@@ -31,6 +33,7 @@ public class BaseDAO {
         ");"
     );
 
+    // This is the SQL statement which creates the Class table.
     public static final String CLASS_SQL = String.join(
             "\n",
             "Create table class(",
@@ -43,6 +46,8 @@ public class BaseDAO {
 
     );
 
+    // This is the SQL statement which creates the ClassMember table,
+    // which can be thought of as a roster of students for a specific class.
     public static final String CLASS_MEMBER_SQL = String.join(
             "\n",
             "create Table class_member(",
@@ -55,6 +60,12 @@ public class BaseDAO {
             ");"
     );
 
+    /**
+     * This is an SQL statement for inserting data into the Club class
+     *
+     * This application will only ever have one club, so this is used
+     * only when the database is first being created.
+     */
     public static final String CLUB_INSERT_SQL = String.join(
         "\n",
         "INSERT INTO club(",
@@ -69,6 +80,7 @@ public class BaseDAO {
     public BaseDAO() throws SQLException {
         System.out.println("Inside BaseDAO");
 
+        // Only perform database initialization the first time.
         if(connection == null) {
             System.out.println("Checking to see if the database exists on disk");
             // create the database if it does not exist

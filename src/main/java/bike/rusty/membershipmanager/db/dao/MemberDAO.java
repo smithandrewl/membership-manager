@@ -12,11 +12,19 @@ import java.util.Vector;
  * Provides access to the Members database table.
  */
 public class MemberDAO extends BaseDAO {
+    // SQL to delete a specific club member by id.
     public static final String DELETE_SQL = "DELETE FROM member WHERE memberId = ?";
+
+    // SQL to get all club members
     String GET_SQL        = "SELECT * FROM member;";
+
+    // SQL to get a specific member by id.
     String FIND_BY_ID_SQL = "SELECT * FROM member where memberId = ?";
+
+    // SQL to add a new club member.
     String ADD_SQL        = "INSERT INTO member(clubId, firstName, lastName) VALUES(?, ?, ?)";
 
+    // SQL to update the values for a specific club member.
     String UPDATE_SQL     =
         String.join(
             "\n",

@@ -50,6 +50,10 @@ public class ScreenManager {
     /**
      * Used by the screens to switch to another screen.
      *
+     * The screenmanager is only directly used at the beginning when the main screen is
+     * shown. From that point, each screen is responsible for switching to the next screen
+     * itself, by calling the changeScreen method.
+     *
      * @param newScreen The screen to switch to
      * @throws SQLException
      */

@@ -9,6 +9,10 @@ import java.util.Scanner;
 
 /**
  * The main menu screen.
+ *
+ * The main menu screen displays a menu. Each selection from the main menu
+ * hands control to a different screen.  Selecting 1. for Admin, would
+ * hand control to the AdminScreen class.
  */
 public class MainScreen implements IScreen{
     private ClubDAO clubDAO;
@@ -28,6 +32,16 @@ public class MainScreen implements IScreen{
 
     @Override
     public void start() throws SQLException {
+        // You can make neat text like this using this online ASCII art generator:
+        // http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+        //
+        // NOTE: String.join is used to neatly format a multiline string.
+        //       The first parameter is a string that will be used to separate the parameters
+        //       passed to String.join.  In this case, we want the art to be displayed on multiple
+        //       lines, so we use "\n" as the delimiter.
+        //
+        //       \n in a string is a special character which causes a newline to be displayed.
+        //       System.out.println("Bob") is more or less the same as typing System.out.print("Bob\n")
         System.out.println(
             String.join(
                 "\n",

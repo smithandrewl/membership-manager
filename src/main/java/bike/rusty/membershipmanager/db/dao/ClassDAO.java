@@ -13,6 +13,7 @@ import java.util.Vector;
  * Provides an interface to the Class database table.
  */
 public class ClassDAO extends BaseDAO {
+    // SQL for getting all classes
     String GET_SQL =
         String.join(
             "\n",
@@ -21,6 +22,7 @@ public class ClassDAO extends BaseDAO {
             "FROM class"
         );
 
+    // SQL for getting a specific class by numeric id.
     String GET_BY_ID_SQL =
         String.join(
             "\n",
@@ -32,6 +34,7 @@ public class ClassDAO extends BaseDAO {
             "    classId = ?"
         );
 
+    // SQL for inserting a new class into the database.
     String ADD_SQL =
         String.join(
             "\n",

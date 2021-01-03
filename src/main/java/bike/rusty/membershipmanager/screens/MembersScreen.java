@@ -11,6 +11,9 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Vector;
 
+/**
+ * Provides the functionality of the Member screen.
+ */
 public class MembersScreen implements IScreen {
     private ClubDAO clubDao;
     private MemberDAO memberDao;
@@ -43,8 +46,11 @@ public class MembersScreen implements IScreen {
 
                 int choice = scanner.nextInt();
 
+                // Design Note: It would probably be better to put the body of each case statement
+                //              in a method of its own.
                 switch(choice) {
                     case 1:
+                        // Gets a vector filled with all of the members of the club using our MemberDAO class.
                         Vector<Member> members = memberDao.getMembers();
 
                         if(members.isEmpty()) {
@@ -66,6 +72,7 @@ public class MembersScreen implements IScreen {
                         System.out.println("Please enter a last name");
                         String lastName = nestedScanner.nextLine();
 
+                        // Add a new member to the database.
                         memberDao.addMember(new Member(clubDao.getClub().getClubId(), firstName, lastName));
 
                         break;
@@ -78,6 +85,9 @@ public class MembersScreen implements IScreen {
                                 System.out.println("Please enter the id of the member to delete:");
                                 int id = deleteScanner.nextInt();
 
+                                // The Optional class allows us to return something which
+                                // may have a value safely. This avoids using the null keyword,
+                                // which has been called the billion dollar mistake.
                                 Optional<Member> member = memberDao.getById(id);
 
                                 if(member.isPresent()) {

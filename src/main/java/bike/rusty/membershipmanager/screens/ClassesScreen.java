@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.Vector;
 
+/**
+ * Implements the Classes menu screen.
+ */
 public class ClassesScreen implements IScreen {
     private ClassDAO classDao;
     private ClubDAO clubDao;
@@ -43,6 +46,7 @@ public class ClassesScreen implements IScreen {
 
                 switch(choice) {
                     case 1:
+                        // Gets a vector containing all of the classes from the database.
                         Vector<Class> classes = classDao.getClasses();
 
                         if(classes.isEmpty()) {
@@ -65,6 +69,10 @@ public class ClassesScreen implements IScreen {
                             System.out.println("Please enter a class description");
                             String description = addScanner.nextLine();
 
+                            // Use the Class DAO to add a new class to the database.
+                            // This call does two things:
+                            //   1. It creates a new Class object to hold the class information
+                            //   2. It passes the class object to the addClass method, which saves it to the database.
                             classDao.addClass(new Class(
                                 clubDao.getClub().getClubId(),
                                 name,
